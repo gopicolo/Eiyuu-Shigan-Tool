@@ -18,8 +18,9 @@ This tool was created by **gopicolo** for extracting and reinserting text in the
 
 1. **Prepare folders**  
    - Put the original `.MES` files in a folder named `input`  
+   - Files with the `.MSG` extension are also `.MES` files — you just need to rename them to `.MES` before using the tool.  
    - Extracted text files will be generated inside the `output` folder  
-   - Modified `.MES` files will be saved in the `modified` folder
+   - Modified `.MES` files will be saved in the `modified` folder  
 
 2. **Extract text**  
    Run the extraction script. It will read all `.MES` files from `input` and create corresponding `_extracted.txt` files inside `output`.
