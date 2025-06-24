@@ -59,7 +59,8 @@ for txt_file in txt_files:
         lines = block.splitlines()
         ptr_line = lines[0]
         text_content = '\n'.join(lines[1:]).strip()
-        sjis = text_content.encode('shift_jis') + b'\x00'
+        # Aqui está a modificação para ignorar bytes ilegais
+        sjis = text_content.encode('shift_jis', errors='ignore') + b'\x00'
         pointer_value = first_text_offset + len(new_text)
         if pointer_value > 0xFFFF:
             print(f"Error: pointer {pointer_value:#06X} bigger than 0xFFFF in {mes_file_name}, aborting this file.")
