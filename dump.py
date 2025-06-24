@@ -18,15 +18,23 @@ for mes_file in mes_files:
     size = len(mes_data)
     offset = 0x12
     pointers = []
+    last_ptr = -1
 
     # Read valid pointers (1 yes, 1 no)
     toggle = True  # True = valid pointer, False = useless
     while offset + 2 <= size:
         ptr = int.from_bytes(mes_data[offset:offset+2], 'big')
         if toggle:
+            if ptr == 0x302C:
+                print(f"Pointer 0x302C found at offset 0x{offset:04X}. Stopping pointer reading.")
+                break
             if ptr >= size or ptr == 0:
                 break
+            if ptr < last_ptr:
+                print(f"Pointer 0x{ptr:04X} smaller than previous 0x{last_ptr:04X} at offset 0x{offset:04X}. Stopping pointer reading.")
+                break
             pointers.append(ptr)
+            last_ptr = ptr
         toggle = not toggle
         offset += 2
 
