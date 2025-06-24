@@ -42,6 +42,7 @@ for mes_file in mes_files:
     pointers.append(size)
 
     with open(out_path, 'w', encoding='utf-8') as out:
+        skip_next = False
         for i in range(len(pointers) - 1):
             p1 = pointers[i]
             p2 = pointers[i + 1]
@@ -51,8 +52,30 @@ for mes_file in mes_files:
             except UnicodeDecodeError:
                 text = f"[ERROR DECODING BLOCK {p1:04X}-{p2:04X}]"
 
+            # Verifica o caso especial
+            if (mes_file.upper() == "S09.MES" and
+                p1 == 0x3C49 and
+                text.startswith("[ERROR DECODING BLOCK 3C49-3C81]")):
+
+                out.write(f"# Pointer: 0x3C49\n")
+                out.write("%t<《店主》>\n")
+                out.write("「そうか、ボビンに限って無断で仕事を休むような子じゃないと思ってたよ\n")
+                out.write(f"# Pointer: 0x3C81\n")
+                out.write("とにかくご苦Jさま。\n")
+                out.write("報酬は、依頼屋に振り込んでおいたから、そっちで受けとってくれ」%p ")
+                skip_next = True
+                continue
+
+            if skip_next:
+                skip_next = False
+                continue
+
             out.write(f"# Pointer: 0x{p1:04X}\n")
-            out.write(text + '\n\n')
+            out.write(text)
+
+            # Adiciona \n\n apenas se não for o último bloco
+            if i < len(pointers) - 2:
+                out.write('\n\n')
 
     print(f"{mes_file} -> {out_path}")
 
