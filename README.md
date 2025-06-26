@@ -57,10 +57,4 @@ This tool was created by **gopicolo** for extracting and reinserting text in the
 
 ---
 
-## Author
-
-This tool was developed by **gopicolo**.
-
----
-
 If you have any questions or feedback, feel free to reach out!
