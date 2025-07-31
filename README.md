@@ -50,9 +50,9 @@ This tool was created by **gopicolo** for extracting and reinserting text in the
 
 ## Font information
 
-The font used by the game is Shift-JIS based, and stored in the file ASC8_16.FNT.
-You can edit the font to add new characters (such as accented letters) if needed for your translation.
-The font can be opened and viewed in Crystal Tile 2 with the following settings:
+The font used by the game is based on Shift-JIS and is stored in the files ASC8_16.FNT and PRESS16.FNT.
+You can edit it to add new characters (such as accented letters) if necessary for your translation.
+The font in ASC8_16.FNT can be opened and viewed in Crystal Tile 2 with the following settings:
 
 Width: 8
 
