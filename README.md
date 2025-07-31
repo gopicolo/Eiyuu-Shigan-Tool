@@ -55,8 +55,8 @@ You can edit the font to add new characters (such as accented letters) if needed
 The font can be opened and viewed in Crystal Tile 2 with the following settings:
 
 Width: 8
-
 Height: 16
+Tile form: 1BPP Solid
 
 ## Notes
 
